@@ -6,6 +6,7 @@ import { Document } from 'mongoose';
 export class Permission extends Document {
   @Prop({ required: true, unique: true })
   permissionId: number;
+  
 
   @Prop({ required: true, trim: true })
   name: string;
