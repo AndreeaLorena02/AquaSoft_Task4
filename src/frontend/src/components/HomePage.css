@@ -1,0 +1,45 @@
+.homepage-container {
+    height: 100vh;
+    background-image: url("../../public/hotelPage.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .background-overlay {
+    background-color: rgba(66, 57, 57, 0.6); 
+    padding: 40px;
+    border-radius: 10px;
+  }
+  
+  .homepage-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .btn {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #ff4500;
+  }
+  
