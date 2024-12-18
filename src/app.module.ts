@@ -7,6 +7,11 @@ import { MongooseModule } from '@nestjs/mongoose/dist/mongoose.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
+import { GroupModule } from './groups/groups.module';
+import { HotelsModule } from './hotels/hotels.module';
+import { AdminModule } from './admin/admin.module';
+import { PermissionsModule } from './permissions/permissions.module';
+import { GroupManagerModule } from './group-manager/group-manager.module';
 
 @Module({
   imports: [
@@ -23,7 +28,7 @@ import { Connection } from 'mongoose';
         return { uri };
       },
     }),
-    UsersModule],
+    UsersModule,GroupModule,HotelsModule, AdminModule,PermissionsModule,GroupModule, GroupManagerModule],
   controllers: [AppController],
   providers: [AppService],
 })
