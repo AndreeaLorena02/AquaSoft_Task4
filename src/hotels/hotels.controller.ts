@@ -7,9 +7,9 @@ import { PermissionsGuard } from 'src/permissions/permissions.guard';
 
 @Controller('admin/hotels')
 export class HotelController {
-  constructor(private readonly hotelService: HotelService) {}
+  constructor(private readonly hotelService: HotelService) { }
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard) // Aplică JWT și PermissionsGuard
+  @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Post('/addHotel')
   async createHotel(@Body() data: Partial<Hotel>): Promise<Hotel> {
     console.log("am intrat pe ruta")

@@ -1,59 +1,47 @@
-import React, { useState } from "react";
-import "./Login.css";
+import React, { useState } from 'react';
+import api from './Api';
 import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
-const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleLogin = async () => {
+    try {
+      console.log('SALUT');
+      const response = await api.post('http://localhost:3000/users/login', {
+        email,
+        password,
+      });
+      localStorage.setItem('access_token', response.data.access_token);
+      // console.log(localStorage.getItem('access_token'));
+      // console.log(response.data.user);
+      alert('Login successful!');
+      navigate("/userMainPage");
+    } catch (err) {
+      console.error(err);
+      alert('Error logging in.');
+    }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("User logged in:", formData);
-
-  };
-
-const navigate = useNavigate();
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit" className="btn">
-          Login
-        </button>
-        <button type="submit" className="btn" onClick={() => navigate("/")}>
-          Back
-        </button>
-      </form>
+    <div>
+      <h1>Login</h1>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
-};
-
-export default Login;
+}

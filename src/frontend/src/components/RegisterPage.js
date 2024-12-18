@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Account created:", formData);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    try {
+      const response = await axios.post("http://localhost:3000/users/register", formData);
 
-  const navigate = useNavigate();
+      if (response.status === 201) { 
+        alert("Account created successfully!");
+        navigate("/login"); 
+      } else {
+        alert("Failed to create account. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error creating account:", err);
+      alert("An error occurred while creating the account. Please try again.");
+    }
+  };
 
   return (
     <div className="register-container">
@@ -29,8 +42,8 @@ const Register = () => {
           Username:
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
@@ -58,7 +71,11 @@ const Register = () => {
         <button type="submit" className="btn">
           Create
         </button>
-        <button type="submit" className="btn" onClick={() => navigate("/")}>
+        <button
+          type="button" 
+          className="btn"
+          onClick={() => navigate("/")}
+        >
           Back
         </button>
       </form>
