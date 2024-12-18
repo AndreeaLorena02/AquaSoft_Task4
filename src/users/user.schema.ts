@@ -3,8 +3,17 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
+
+
 @Schema()
 export class User extends Document {
+
+
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    return bcrypt.compare(candidatePassword, this.password);
+  }; 
+
+
   @Prop({ required: true, trim: true })
   name: string;
 
@@ -14,26 +23,31 @@ export class User extends Document {
   @Prop({ required: true })
   password: string;
 
-  @Prop({
-    required: true,
-    enum: ['Administrator', 'Hotel Manager', 'Group Manager', 'Traveler', 'Data Operator'],
-    default: 'Traveler',
-  })
-  role: string;
+  // @Prop({ default: 'Traveler' })
+  // role: string;
+
+  @Prop({ type: String }) // Referință pentru permissionId
+  permissionId: string;
 
   @Prop({ default: Date.now })
   createdAt: Date;
 
-  // Metodă pentru compararea parolelor
-  // async comparePassword(plainPassword: string): Promise<boolean> {
-  //   return bcrypt.compare(plainPassword, this.password);
-  // }
+  @Prop({type: String, default: null })
+  hotelId: string;
+
+  @Prop({type: String, default: null })
+  groupId: string;
 }
 
-// Schema Factory
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Middleware pentru criptarea parolei
+
+
+UserSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
+  return bcrypt.compare(candidatePassword, this.password);
+};
+
+// Middleware doar pentru criptarea parolei
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
 
@@ -45,3 +59,5 @@ UserSchema.pre('save', async function (next) {
     next(err);
   }
 });
+
+
