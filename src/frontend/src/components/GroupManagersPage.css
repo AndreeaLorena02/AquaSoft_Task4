@@ -1,0 +1,114 @@
+.group-managers-container {
+  background-image: url('../../public/mainPage.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 5%;
+  }
+  
+  .managers-table {
+    width: 80%;
+    max-width: 1000px;
+    background-color: rgba(255, 255, 255, 0.9); /* Set a background color to make table non-transparent */
+    border-collapse: collapse;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for a more refined look */
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .managers-table th, .managers-table td {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .managers-table th {
+    background-color: #ff7f50;
+    color: white;
+  }
+
+  .managers-table td {
+    color: #0b0b0b;  
+  }
+
+  .managers-table tbody tr:hover {
+  background-color: rgb(72, 160, 72); 
+}
+  
+  .btn-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-back:hover {
+    background-color: darkgreen;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    background-color: #ff7f50; 
+    padding: 1rem 2rem;
+    color: white;
+    width: 97%; 
+    height: 5%;
+    position: fixed; 
+    top: 0; 
+    z-index: 10; 
+  }
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+.navbar a:hover {
+  background-color: #6c6c6c;
+  border-radius: 5px;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem; 
+}
+
+.btn-send-invites {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-send-invites:hover {
+  background-color: green;
+}

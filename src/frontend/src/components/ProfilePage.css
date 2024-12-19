@@ -1,5 +1,5 @@
 .profile-container {
-    /* background-image: url('/profileBackground.jpg'); */
+    background-image: url('../../public/profileImage2.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -30,21 +30,44 @@
     color: #555;
   }
   
-  .btn-logout {
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #ff7f50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-logout:hover {
-    background-color: #ff4500;
-  }
+/* Styling for the button container */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 1.5rem; /* Add some space above the buttons */
+}
+
+/* Styling for Logout button */
+.btn-logout {
+  padding: 0.75rem 1.5rem;
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #ff4500;
+}
+
+.btn-back {
+  padding: 0.75rem 1.5rem;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: darkgreen; 
+}
+
   
   @keyframes fadeIn {
     from {

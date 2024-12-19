@@ -44,12 +44,40 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Put('/book-hotel')
-  async updateUserHotel(@Body() body: { hotelId: any ,user: any }) {
+  async updateUserHotel(@Body() body: { hotelId: any, user: any }) {
     console.log("am intrat")
     const { hotelId, user } = body;
-    console.log("hotelId: " , hotelId , "user: " , user)
+    console.log("hotelId: ", hotelId, "user: ", user)
     return this.userService.bookHotelById(hotelId, user);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/getUsersByHotel/:hotelId')
+  async getUsersByHotel(@Param('hotelId') hotelId: string): Promise<User[]> {
+    return this.userService.getUsersByHotelId(hotelId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put('/removeHotelId/:userId')
+  async removeHotelIdForUser(
+    @Param('userId') userId: string,
+    @Body() body: { hotelId: any }
+  ) {
+    console.log("Received userId:", userId, "hotelId:", body.hotelId);
+    const updatedUser = await this.userService.updateUserHotelId(userId, body.hotelId);
+
+    return {
+      message: `Hotel ID removed successfully for user with ID: ${userId}`,
+      user: updatedUser,
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/managers-by-group/:groupId')
+  async getHotelManagersByGroup(@Param('groupId') groupId: string) {
+    return this.userService.getHotelManagersByGroup(groupId);
+  }
+
 
 }
 

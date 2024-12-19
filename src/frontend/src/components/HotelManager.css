@@ -1,0 +1,103 @@
+  .navbar {
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    background-color: #ff7f50; 
+    padding: 1rem 2rem;
+    color: white;
+    width: 97%; 
+    height: 5%;
+    position: fixed; 
+    top: 0; 
+    z-index: 10; 
+  }
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links li {
+  font-size: 1rem;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #333; 
+}
+
+.hotel-manager-container {
+  background-image: url('../../public/mainPage.jpg'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.main-content {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6); 
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 10vh; 
+  width: 80%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* Error Message Styling */
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.hotels-list {
+  list-style: none;
+  padding: 0;
+}
+
+.hotel-item {
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-item h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.hotel-item p {
+  margin: 0.5rem 0;
+}
+

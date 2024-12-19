@@ -12,6 +12,9 @@ import AllOffersPage from "./components/AllOffers";
 import AddOfferPage from "./components/AddOffer";
 import UpdateOffer from "./components/UpdateOffer";
 import AddOfferToHotel from "./components/AddOfferToHotel";
+import HotelManager from "./components/HotelManagerPage";
+import HotelUsers from "./components/HotelUsersPage";
+import GroupManagersPage from "./components/GroupManagersPage";
 
 function App() {
   return (
@@ -28,11 +31,9 @@ function App() {
         <Route path="/offers/add" element={<AddOfferPage />} />
         <Route path="/offers/addOfferToHotel/:hotelId" element={<AddOfferToHotel />} />
         <Route path="/offers/updateOffer/:offerId" element={<UpdateOffer />} />
-
-
-
-
-
+        <Route path="/hotelManagerPage" element={<HotelManager />} />
+        <Route path="/hotelUsersPage" element={<HotelUsers />} />
+        <Route path="/groupManagersPage" element={<GroupManagersPage />} />
 
       </Routes>
     </Router>

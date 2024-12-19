@@ -12,18 +12,18 @@ import { Hotel } from 'src/hotels/hotel.schema';
 export class UsersService {
 
 
-    constructor(
-      @InjectModel(User.name) private readonly userModel: Model<User>,
-      @InjectModel(Permission.name) private permissionModel: Model<Permission>,
-      @InjectModel(Hotel.name) private readonly hotelModel: Model<Hotel>,
+  constructor(
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(Permission.name) private permissionModel: Model<Permission>,
+    @InjectModel(Hotel.name) private readonly hotelModel: Model<Hotel>,
 
-      private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService,
 
 
-  ) {}
+  ) { }
 
-    async createUser(userData:any): Promise<User> {
-      const travelerPermission = await this.permissionModel.findOne({ name: 'Traveler' }).exec();
+  async createUser(userData: any): Promise<User> {
+    const travelerPermission = await this.permissionModel.findOne({ name: 'Traveler' }).exec();
 
     if (!travelerPermission) {
       throw new NotFoundException('Permission with name "Traveler" not found');
@@ -35,81 +35,112 @@ export class UsersService {
     // Creează user-ul și salvează în baza de date
     const newUser = new this.userModel(userData);
     return newUser.save();
+  }
+
+
+  async validateUser(email: string, password: string): Promise<any> {
+    const user: User = await this.findByEmail(email);
+    if (user && (await user.comparePassword(password))) {
+      const { password, ...result } = user.toObject();
+      return result;
     }
+    throw new UnauthorizedException('Invalid credentials');
+  }
 
+  async login(userData: { email: string; password: string }) {
+    // Verifică utilizatorul folosind validateUser
+    const user = await this.validateUser(userData.email, userData.password);
 
-   async validateUser(email: string, password: string): Promise<any> {
-      const user: User = await this.findByEmail(email);
-      if (user && (await user.comparePassword(password))) {
-        const { password, ...result } = user.toObject();
-        return result;
-      }
-      throw new UnauthorizedException('Invalid credentials');
-    }
-
-    async login(userData: { email: string; password: string }) {
-      // Verifică utilizatorul folosind validateUser
-      const user = await this.validateUser(userData.email, userData.password);
-    
-      // Dacă utilizatorul este valid, generează token-ul JWT
-      const payload = {
-        email: user.email,
-        sub: user._id,
-        permissionId: user.permissionId, // Adaugă permissionId în payload
-      };
-      return {
-        access_token: this.jwtService.sign(payload),
-        user: user
+    // Dacă utilizatorul este valid, generează token-ul JWT
+    const payload = {
+      email: user.email,
+      sub: user._id,
+      permissionId: user.permissionId, // Adaugă permissionId în payload
+    };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user: user
     }
   }
-    
-  
-    async getUsers(): Promise<User[]> {
-      return this.userModel.find().exec();
+
+
+  async getUsers(): Promise<User[]> {
+    return this.userModel.find().exec();
+  }
+
+
+  async findByEmail(email: string) {
+    return this.userModel.findOne({ email }).exec();
+  }
+
+
+  async getUserById(id: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async bookHotelById(hotelId: any, user: any) {
+    // Verifică existența hotelului
+    const hotel = await this.hotelModel.findById(hotelId).exec();
+    if (!hotel) {
+      throw new NotFoundException(`Hotel with ID ${hotelId} not found`);
     }
 
+    // Actualizează user-ul în baza de date
+    const updatedUser = await this.userModel.findByIdAndUpdate(
+      user._id,
+      { hotelId: hotelId },
+      { new: true },
+    );
 
-    async findByEmail(email: string) {
-      return this.userModel.findOne({ email }).exec();
+    if (!updatedUser) {
+      throw new NotFoundException(`User with ID ${user._id} not found`);
     }
 
+    return {
+      message: `User ${user.name} successfully booked hotel ${hotel.HotelName}`,
+      user: updatedUser,
+      hotel,
+    };
+  }
 
-    async getUserById(id: string): Promise<User> {
-      const user = await this.userModel.findById(id).exec();
-      if (!user) {
-        throw new NotFoundException(`User with ID ${id} not found`);
-      }
-      return user;
+  async getUsersByHotelId(hotelId: string): Promise<User[]> {
+    const users = await this.userModel.find({ hotelId }).exec();
+
+    console.log(users);
+    if (!users || users.length === 0) {
+      throw new NotFoundException(`No users found for hotel ID: ${hotelId}`);
     }
 
+    return users || [];
+  }
 
+  async updateUserHotelId(userId: string, hotelId: any): Promise<User> {
+    const updatedUser = await this.userModel.findByIdAndUpdate(
+      userId,
+      { hotelId: hotelId },
+      { new: true }
+    );
 
-
-    async bookHotelById(hotelId:any, user:any) {
-      // Verifică existența hotelului
-      const hotel = await this.hotelModel.findById(hotelId).exec();
-      if (!hotel) {
-        throw new NotFoundException(`Hotel with ID ${hotelId} not found`);
-      }
-  
-      // Actualizează user-ul în baza de date
-      const updatedUser = await this.userModel.findByIdAndUpdate(
-        user._id,
-        { hotelId: hotelId },
-        { new: true },
-      );
-  
-      if (!updatedUser) {
-        throw new NotFoundException(`User with ID ${user._id} not found`);
-      }
-  
-      return {
-        message: `User ${user.name} successfully booked hotel ${hotel.HotelName}`,
-        user: updatedUser,
-        hotel,
-      };
+    if (!updatedUser) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
     }
-    
 
-    
+    return updatedUser;
+  }
+
+
+  async getHotelManagersByGroup(groupId: string): Promise<User[]> {
+    const users = await this.userModel.find({ groupId, permissionId: '676173a613e3328961b2ed9d' }).exec();
+
+    if (!users || users.length === 0) {
+      throw new NotFoundException(`No hotel managers found for group ID: ${groupId}`);
+    }
+
+    return users;
+  }
+
 }
