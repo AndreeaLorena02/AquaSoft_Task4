@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./UserPage.css";
 
-const UserPage = () => {
+const AdminPage = () => {
   const [hotels, setHotels] = useState([]);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -24,40 +23,23 @@ const UserPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("hotels: " , response.data)
+      console.log("hotels: ", response.data);
       setHotels(response.data);
     } catch (err) {
       setError("Failed to load hotels. Please try again later.");
     }
   };
 
-  const bookHotel = async (hotelId) => {
-    console.log("id: " , hotelId);
-    const token = localStorage.getItem("access_token");
-    const user = JSON.parse(localStorage.getItem("user"));
-    
-    console.log(user);// Retrieve and parse user data from localStorage
+  const viewOffers = (hotelId) => {
+    console.log(`Viewing offers for hotel ID: ${hotelId}`);
+    // Redirect to offers page
+    navigate(`/hotels/${hotelId}/offers`);
+  };
 
-    if (!token) {
-      setError("You need to be logged in to book a hotel.");
-      navigate("/login");
-      return;
-    }
-
-    try {
-      const response = await axios.put(
-        `http://localhost:3000/users/book-hotel`,
-        { hotelId, user: user}, // Trimite hotelId și userId,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setMessage(`Successfully booked hotel with ID: ${hotelId}`);
-    } catch (err) {
-      setError("Failed to book hotel. Please try again later.");
-    }
+  const addOffer = (hotelId) => {
+    console.log(`Adding offer for hotel ID: ${hotelId}`);
+    // Redirect to add offer page
+    navigate(`/hotels/${hotelId}/add-offer`);
   };
 
   useEffect(() => {
@@ -77,6 +59,7 @@ const UserPage = () => {
 
       <main className="main-content">
         <section id="hotels">
+          <h2>Admin</h2>
           <h2>Available Hotels</h2>
 
           {error && <p className="error-message">{error}</p>}
@@ -87,12 +70,20 @@ const UserPage = () => {
               {hotels.map((hotel) => (
                 <li key={hotel._id} className="hotel-item">
                   <h3>{hotel.HotelName}</h3>
-                  <button
-                    className="book-button"
-                    onClick={() =>bookHotel(hotel._id)}
-                  >
-                    Book Hotel
-                  </button>
+                  <div className="button-group">
+                    <button
+                      className="view-button"
+                      onClick={() => viewOffers(hotel._id)}
+                    >
+                      View Offers
+                    </button>
+                    <button
+                      className="add-button"
+                      onClick={() => addOffer(hotel._id)}
+                    >
+                      Add Offer
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -105,4 +96,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default AdminPage;

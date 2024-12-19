@@ -5,6 +5,7 @@ import { User } from './user.schema';
 import { Model } from 'mongoose';
 import { Permission } from 'src/permissions/permissions.schema';
 import { JwtService } from '@nestjs/jwt';
+import { Hotel } from 'src/hotels/hotel.schema';
 
 
 @Injectable()
@@ -14,6 +15,8 @@ export class UsersService {
     constructor(
       @InjectModel(User.name) private readonly userModel: Model<User>,
       @InjectModel(Permission.name) private permissionModel: Model<Permission>,
+      @InjectModel(Hotel.name) private readonly hotelModel: Model<Hotel>,
+
       private readonly jwtService: JwtService,
 
 
@@ -68,6 +71,43 @@ export class UsersService {
 
     async findByEmail(email: string) {
       return this.userModel.findOne({ email }).exec();
+    }
+
+
+    async getUserById(id: string): Promise<User> {
+      const user = await this.userModel.findById(id).exec();
+      if (!user) {
+        throw new NotFoundException(`User with ID ${id} not found`);
+      }
+      return user;
+    }
+
+
+
+
+    async bookHotelById(hotelId:any, user:any) {
+      // Verifică existența hotelului
+      const hotel = await this.hotelModel.findById(hotelId).exec();
+      if (!hotel) {
+        throw new NotFoundException(`Hotel with ID ${hotelId} not found`);
+      }
+  
+      // Actualizează user-ul în baza de date
+      const updatedUser = await this.userModel.findByIdAndUpdate(
+        user._id,
+        { hotelId: hotelId },
+        { new: true },
+      );
+  
+      if (!updatedUser) {
+        throw new NotFoundException(`User with ID ${user._id} not found`);
+      }
+  
+      return {
+        message: `User ${user.name} successfully booked hotel ${hotel.HotelName}`,
+        user: updatedUser,
+        hotel,
+      };
     }
     
 

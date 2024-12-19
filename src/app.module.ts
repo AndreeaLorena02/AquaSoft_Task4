@@ -12,6 +12,10 @@ import { HotelsModule } from './hotels/hotels.module';
 import { AdminModule } from './admin/admin.module';
 import { PermissionsModule } from './permissions/permissions.module';
 import { GroupManagerModule } from './group-manager/group-manager.module';
+import { HotelOffersModule } from './hotel-offers/hotel-offers.module';
+import { OffersService } from './offers/offers.service';
+import { OffersController } from './offers/offers.controller';
+import { OffersModule } from './offers/offers.module';
 
 @Module({
   imports: [
@@ -28,9 +32,9 @@ import { GroupManagerModule } from './group-manager/group-manager.module';
         return { uri };
       },
     }),
-    UsersModule,GroupModule,HotelsModule, AdminModule,PermissionsModule,GroupModule, GroupManagerModule],
-  controllers: [AppController],
-  providers: [AppService],
+    UsersModule,GroupModule,HotelsModule, AdminModule,PermissionsModule,GroupModule, GroupManagerModule, HotelOffersModule, OffersModule],
+  controllers: [AppController, OffersController],
+  providers: [AppService, OffersService],
 })
 export class AppModule {
   constructor(@InjectConnection() private readonly connection: Connection) { }

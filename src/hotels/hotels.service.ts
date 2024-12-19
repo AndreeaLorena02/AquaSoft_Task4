@@ -18,4 +18,8 @@ export class HotelService {
   async getAllHotels(): Promise<Hotel[]> {
     return this.hotelModel.find().exec();
   }
+
+  async getHotelById(hotelId:string): Promise<any> {
+    return this.hotelModel.findById(hotelId);
+  }
 }

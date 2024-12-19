@@ -11,6 +11,6 @@ import { Hotel, HotelSchema } from './hotel.schema';
   ],
   providers: [HotelService],
   controllers: [HotelController],
-  exports: [HotelService],
+  exports: [HotelService , MongooseModule , HotelsModule],
 })
 export class HotelsModule { }

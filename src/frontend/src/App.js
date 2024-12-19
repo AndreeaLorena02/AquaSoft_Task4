@@ -4,6 +4,8 @@ import HomePage from "./components/HomePage";
 import Register from './components/RegisterPage';
 import Login from "./components/LoginPage";
 import UserPage from "./components/UserPage";
+import UserProfile from "./components/UserProfile";
+import AdminPage from "./components/AdminPage";
 import "./App.css";
 
 function App() {
@@ -14,6 +16,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/userMainPage" element={<UserPage />} />
+        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/adminPage" element={<AdminPage />} />
+
+
       </Routes>
     </Router>
   );
