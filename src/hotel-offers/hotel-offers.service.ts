@@ -23,4 +23,12 @@ export class HotelOffersService {
       console.log("Offers fetched: ", offers); // Log pentru rezultate
       return offers;
     }
+
+    async deleteHotelOffer(hotelId: string, offerId: string): Promise<any> {
+      console.log("hotelId: " , hotelId)
+      console.log("offerId: " , offerId)
+      console.log("delete: " , await this.hotelOffersModel.deleteOne({ hotelId, offerId }).exec())
+      return await this.hotelOffersModel.deleteOne({ hotelId, offerId }).exec();
+    }
+    
 }

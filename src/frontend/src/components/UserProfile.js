@@ -28,6 +28,9 @@ const UserProfile = () => {
         <button className="btn-logout" onClick={handleLogout}>
           Logout
         </button>
+        <button className="back-button" onClick={() => navigate(-1)}>
+                    Back
+        </button>
       </div>
     </div>
   );

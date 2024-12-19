@@ -11,6 +11,7 @@ export class GroupManagerService {
     constructor(
         @InjectModel(User.name) private readonly userModel: Model<User>,
         @InjectModel(Hotel.name) private readonly hotelModel: Model<Hotel>,
+
       ) {}
     
       async getManagersByGroup(groupId: string): Promise<User[]> {
@@ -39,6 +40,16 @@ export class GroupManagerService {
         return managers;
       }
 
+
+
+      async findHotelManagersByGroupId(groupId: string): Promise<User[]> {
+        return this.userModel.find({ groupId, permissionId: '676173a613e3328961b2ed9d' }).exec();
+      }
+
+
+      // async findManagersByIds(managerIds: string[]): Promise<any[]> {
+      //   return this.hot.find({ _id: { $in: managerIds } }).exec();
+      // }
 
 
 }

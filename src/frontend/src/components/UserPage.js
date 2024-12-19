@@ -64,6 +64,7 @@ const UserPage = () => {
     getHotels();
   }, []);
 
+
   return (
     <div className="user-page">
       <nav className="navbar">
@@ -71,7 +72,7 @@ const UserPage = () => {
         <ul className="navbar-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#hotels">Hotels</a></li>
-          <li><Link to="/userProfile">Profile</Link></li>
+          <li><Link to="/userProfile">My Profile</Link></li>
         </ul>
       </nav>
 

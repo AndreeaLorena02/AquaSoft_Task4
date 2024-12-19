@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./AdminPage.css";
 
 const AdminPage = () => {
   const [hotels, setHotels] = useState([]);
@@ -39,7 +40,7 @@ const AdminPage = () => {
   const addOffer = (hotelId) => {
     console.log(`Adding offer for hotel ID: ${hotelId}`);
     // Redirect to add offer page
-    navigate(`/hotels/${hotelId}/add-offer`);
+    navigate(`/offers/addOfferToHotel/${hotelId}`);
   };
 
   useEffect(() => {
@@ -53,7 +54,8 @@ const AdminPage = () => {
         <ul className="navbar-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#hotels">Hotels</a></li>
-          <li><Link to="/userProfile">Profile</Link></li>
+          <li><Link to="/userProfile">My Profile</Link></li>
+          <li><Link to="/allOffers">All Availabale Offers</Link></li>
         </ul>
       </nav>
 

@@ -20,7 +20,7 @@ const HotelOffers = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/offers/${hotelId}`, {
+      const response = await axios.get(`http://localhost:3000/hotel-offers/${hotelId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,6 +30,26 @@ const HotelOffers = () => {
     } catch (err) {
       console.error(err);
       setError("Failed to load offers. Please try again later.");
+    }
+  };
+
+
+
+
+
+  const handleRemoveOffer = async (offerId) => {
+    try {
+      const token = localStorage.getItem("access_token");
+      console.log("offerId: " , offerId)
+      await axios.delete(`http://localhost:3000/hotel-offers/${hotelId}/removeOffer/${offerId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Oferta a fost eliminată cu succes!");
+      getOffers(); // Actualizează lista după ștergere
+    } catch (error) {
+      setError("Nu s-a putut elimina oferta.");
     }
   };
 
@@ -46,8 +66,9 @@ const HotelOffers = () => {
         <ul className="offers-list">
           {offers.map((offer) => (
             <li key={offer._id} className="offer-item">
-              <h3>{offer.name}</h3>
-              <p>{offer.details}</p>
+              <h3>Name: {offer.name}</h3>
+              <p>Price: {offer.price}</p>
+              <button onClick={() => handleRemoveOffer(offer._id)}>Șterge Oferta</button>
             </li>
           ))}
         </ul>

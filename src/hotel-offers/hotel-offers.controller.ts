@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Delete, Get, NotFoundException, Param } from '@nestjs/common';
 import { HotelOffersService } from './hotel-offers.service';
 import { HotelService } from '../hotels/hotels.service'; // Assuming hotels logic is in a separate service
 import { OffersService } from 'src/offers/offers.service';
 
-@Controller('offers')
+@Controller('hotel-offers')
 export class HotelOffersController {
   constructor(
     private readonly hotelOffersService: HotelOffersService,
@@ -45,4 +45,18 @@ export class HotelOffersController {
       offers: detailedOffers,
     };
   }
+
+
+  @Delete('/:hotelId/removeOffer/:offerId')
+  async removeOfferFromHotel(@Param('hotelId') hotelId: string, @Param('offerId') offerId: string) {
+    console.log("am ajuns aici " , offerId)
+    const result = await this.hotelOffersService.deleteHotelOffer(hotelId, offerId);
+    if (!result) {
+      throw new NotFoundException('HotelOffer not found');
+    }
+    return { message: 'Offer removed from hotel successfully' };
+  }
+
+
+
 }

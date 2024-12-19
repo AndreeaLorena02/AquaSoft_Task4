@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import {forwardRef, Module } from '@nestjs/common';
 import { HotelOffersController } from './hotel-offers.controller';
 import { HotelOffersService } from './hotel-offers.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -11,10 +11,12 @@ import { HotelsModule } from 'src/hotels/hotels.module';
   imports: [
     MongooseModule.forFeature([{ name: HotelOffers.name, schema: HotelOffersSchema }]),
     HotelsModule, // Asigură-te că HotelModule este inclus
-    OffersModule, // Asigură-te că OffersModule este inclus
+    forwardRef(() => OffersModule), // Asigură-te că OffersModule este inclus
+    
   ],
+  
   controllers: [HotelOffersController],
   providers: [HotelOffersService],
-  exports:[HotelOffersModule , MongooseModule]
+  exports:[HotelOffersModule , MongooseModule,HotelOffersService]
 })
 export class HotelOffersModule {}

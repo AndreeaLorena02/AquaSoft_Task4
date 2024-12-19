@@ -8,6 +8,10 @@ import UserProfile from "./components/UserProfile";
 import AdminPage from "./components/AdminPage";
 import "./App.css";
 import HotelOffers from "./components/HotelOffers";
+import AllOffersPage from "./components/AllOffers";
+import AddOfferPage from "./components/AddOffer";
+import UpdateOffer from "./components/UpdateOffer";
+import AddOfferToHotel from "./components/AddOfferToHotel";
 
 function App() {
   return (
@@ -20,6 +24,13 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/adminPage" element={<AdminPage />} />
         <Route path="/hotels/:hotelId/offers" element={<HotelOffers />} />
+        <Route path="/allOffers" element={<AllOffersPage />} />
+        <Route path="/offers/add" element={<AddOfferPage />} />
+        <Route path="/offers/addOfferToHotel/:hotelId" element={<AddOfferToHotel />} />
+        <Route path="/offers/updateOffer/:offerId" element={<UpdateOffer />} />
+
+
+
 
 
 

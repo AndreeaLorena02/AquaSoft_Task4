@@ -1,0 +1,80 @@
+/* AddOfferToHotel.css */
+
+.add-offer-to-hotel-page {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.add-offer-to-hotel-page h1 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.offers-list {
+  list-style: none;
+  padding: 0;
+}
+
+.offers-list li {
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.offers-list h3 {
+  font-size: 18px;
+  color: #555;
+  margin: 0 0 5px;
+}
+
+.offers-list p {
+  font-size: 16px;
+  color: #777;
+  margin: 0;
+}
+
+.offers-list button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.offers-list button:hover {
+  background-color: #0056b3;
+}
+
+.offers-list button:active {
+  background-color: #00408b;
+}
+
+.offers-list button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
