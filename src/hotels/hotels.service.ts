@@ -15,6 +15,11 @@ export class HotelService {
     return newHotel.save();
   }
 
+
+  
+
+
+
   async getAllHotels(): Promise<Hotel[]> {
     return this.hotelModel.find().exec();
   }

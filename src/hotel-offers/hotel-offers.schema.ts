@@ -2,7 +2,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+
+@Schema({ collection: 'hotelOffers' })
 export class HotelOffers extends Document {
   @Prop({ required: true })
   hotelId: string;

@@ -11,9 +11,16 @@ export class HotelOffersService {
 
     async getOffersByHotelId(hotelId: string): Promise<any> {
       console.log("hotelId: " , hotelId)
-      const offers = await this.hotelOffersModel.find({ hotelId }).exec();
-      console.log("Offers fetched: ", offers); // Log pentru rezultate
-      return this.hotelOffersModel.find({ hotelId }).exec();
+      const offers = await this.hotelOffersModel.find({hotelId}).exec();
+      // console.log("Offers fetched: ", offers); // Log pentru rezultate
+      return offers;
     }
 
+
+    async getObject(hotelId: string): Promise<HotelOffers> {
+      console.log("hotelId: " , hotelId)
+      const offers = await this.hotelOffersModel.findById(hotelId).exec();
+      console.log("Offers fetched: ", offers); // Log pentru rezultate
+      return offers;
+    }
 }

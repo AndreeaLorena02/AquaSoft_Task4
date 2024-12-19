@@ -12,6 +12,13 @@ export class HotelOffersController {
     private readonly offersService: OffersService,
   ) {}
 
+
+  @Get('getById/:id')
+  async getById(@Param('id') hotelId: string) {
+    const object = await this.hotelOffersService.getObject(hotelId);
+    return object;
+  }
+
   @Get('/:hotelId')
   async getOffersByHotelId(@Param('hotelId') hotelId: string) {
     // Get the hotel details
@@ -22,7 +29,7 @@ export class HotelOffersController {
 
     // Get the offers linked to this hotel
     const hotelOffers = await this.hotelOffersService.getOffersByHotelId(hotelId);
-    console.log("hotelOffers: " , hotelOffers)
+    // console.log("hotelOffers: " , hotelOffers)
 
     // Fetch detailed offer information
     const detailedOffers = await Promise.all(
@@ -31,6 +38,7 @@ export class HotelOffersController {
         return offer;
       }),
     );
+    console.log(detailedOffers)
 
     return {
       hotel: hotel,

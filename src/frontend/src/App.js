@@ -7,6 +7,7 @@ import UserPage from "./components/UserPage";
 import UserProfile from "./components/UserProfile";
 import AdminPage from "./components/AdminPage";
 import "./App.css";
+import HotelOffers from "./components/HotelOffers";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path="/userMainPage" element={<UserPage />} />
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/adminPage" element={<AdminPage />} />
+        <Route path="/hotels/:hotelId/offers" element={<HotelOffers />} />
+
 
 
       </Routes>
