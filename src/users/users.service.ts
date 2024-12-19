@@ -143,4 +143,10 @@ export class UsersService {
     return users;
   }
 
+
+
+  async findUsersByIds(userIds: string[]): Promise<any[]> {
+    return this.userModel.find({ _id: { $in: userIds } }).exec();
+  }
+
 }

@@ -5,16 +5,19 @@ import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class EmailService {
-  private transporter;
+  public transporter;
 
   constructor() {
     this.transporter = nodemailer.createTransport({
       host: 'sandbox.smtp.mailtrap.io',
       port: 587,
+      secure: false, // true pentru port 465, false pentru port 587
       auth: {
-        user: 'calin 12', // Înlocuiește cu userul tău Mailtrap
-        pass: 'Federer 1', // Înlocuiește cu parola ta Mailtrap
+        user: 'd2b534ae32d1fd', // Înlocuiește cu userul tău Mailtrap
+        pass: 'f814659d1a33ca', // Înlocuiește cu parola ta Mailtrap
       },
+        debug: true, // Activează debugging
+        logger: true, // Activează logarea completă
     });
   }
 

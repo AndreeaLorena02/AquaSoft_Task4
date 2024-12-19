@@ -55,29 +55,32 @@ const GroupManagersPage = () => {
     );
   };
 
-//   const handleSendInvitations = async () => {
-//     const token = localStorage.getItem("access_token");
+  console.log("manageri: " ,  selectedManagers)
 
-//     if (!token || selectedManagers.length === 0) {
-//       setError("Please select at least one manager to send the invitation.");
-//       return;
-//     }
 
-//     try {
-//       await axios.post(
-//         "http://localhost:3000/users/send-invitation",  
-//         { managerIds: selectedManagers },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-//       alert("Invitations sent successfully!");
-//     } catch (err) {
-//       setError("Error sending invitations: " + err.message);
-//     }
-//   };
+  const handleSendInvitations = async () => {
+    const token = localStorage.getItem("access_token");
+
+    if (!token || selectedManagers.length === 0) {
+      setError("Please select at least one manager to send the invitation.");
+      return;
+    }
+
+    try {
+      await axios.post(
+        "http://localhost:3000/group-manager/send-invitations",  
+        { managerIds: selectedManagers },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Invitations sent successfully!");
+    } catch (err) {
+      setError("Error sending invitations: " + err.message);
+    }
+  };
 
   if (loading) {
     return <p>Loading hotel managers...</p>;
@@ -133,8 +136,8 @@ const GroupManagersPage = () => {
           ))}
         </tbody>
       </table>
-      {/* <button onClick={handleSendInvitations} className="btn-send-invites"> */}
-      <button className="btn-send-invites">
+      <button onClick={handleSendInvitations} className="btn-send-invites">
+      {/* <button className="btn-send-invites"> */}
         Send Invitations
       </button>
     </div>

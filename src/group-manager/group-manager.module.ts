@@ -7,6 +7,8 @@ import { User, UserSchema } from 'src/users/user.schema';
 import { Permission, PermissionSchema } from 'src/permissions/permissions.schema';
 import { Hotel, HotelSchema } from 'src/hotels/hotel.schema';
 import { Group, GroupSchema } from 'src/groups/groups.schema';
+import { EmailService } from 'src/email.service';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports:[
@@ -17,8 +19,9 @@ import { Group, GroupSchema } from 'src/groups/groups.schema';
           {name: Group.name, schema: GroupSchema },
 
          ]),
+         UsersModule
   ],
   controllers: [GroupManagerController],
-  providers: [GroupManagerService]
+  providers: [GroupManagerService,EmailService]
 })
 export class GroupManagerModule {}
