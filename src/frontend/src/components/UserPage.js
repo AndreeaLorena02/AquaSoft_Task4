@@ -70,8 +70,8 @@ const UserPage = () => {
       <nav className="navbar">
         <h1 className="navbar-title">Hotel Management</h1>
         <ul className="navbar-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#hotels">Hotels</a></li>
+          {/* <li><a href="#home">Home</a></li>
+          <li><a href="#hotels">Hotels</a></li> */}
           <li><Link to="/userProfile">My Profile</Link></li>
         </ul>
       </nav>

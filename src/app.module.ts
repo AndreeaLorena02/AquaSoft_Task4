@@ -16,6 +16,7 @@ import { HotelOffersModule } from './hotel-offers/hotel-offers.module';
 import { OffersService } from './offers/offers.service';
 import { OffersController } from './offers/offers.controller';
 import { OffersModule } from './offers/offers.module';
+import { HotelPageModule } from './hotel-page/hotel-page.module';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { OffersModule } from './offers/offers.module';
         return { uri };
       },
     }),
-    UsersModule,GroupModule,HotelsModule, AdminModule,PermissionsModule,GroupModule, GroupManagerModule, HotelOffersModule, OffersModule],
+    UsersModule,GroupModule,HotelsModule, AdminModule,PermissionsModule,GroupModule, GroupManagerModule, HotelOffersModule, OffersModule, HotelPageModule],
   controllers: [AppController, OffersController],
   providers: [AppService, OffersService],
 })

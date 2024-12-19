@@ -21,7 +21,7 @@ import { UsersModule } from 'src/users/users.module';
          ]),
          UsersModule
   ],
-  controllers: [GroupManagerController],
+  controllers: [GroupManagerController ],
   providers: [GroupManagerService,EmailService]
 })
 export class GroupManagerModule {}

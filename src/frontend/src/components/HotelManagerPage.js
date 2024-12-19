@@ -13,12 +13,11 @@ export default function HotelManager() {
     <div className="hotel-manager-container">
       <nav className="navbar">
         <ul className="navbar-links">
-          <li onClick={() => handleNavigation("/view-hotel")}>View Hotel</li>
           <li onClick={() => handleNavigation("/hotelUsersPage")}>
             List Users
           </li>
-          <li onClick={() => handleNavigation("/notifications")}>
-            Notifications
+          <li onClick={() => handleNavigation("/hotelPage")}>
+            View Hotels
           </li>
           <li onClick={() => handleNavigation("/userProfile")}>Profile</li>
         </ul>

@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import * as jwt from 'jsonwebtoken';
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
 
 @Controller('hotelPage')
 export class HotelAccessController {
-  @Get('/')
+  @Get()
   async accessHotel(@Query('token') token: string) {
+    console.log("AM PRIMIT TOKENUL")
     const secret = 'temporary_secret_key'; // Aceeași cheie secretă folosită la generare
 
     try {

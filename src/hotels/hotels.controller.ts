@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Param } from '@nestjs/common';
 import { HotelService } from './hotels.service';
 import { Hotel } from './hotel.schema';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -14,6 +14,11 @@ export class HotelController {
   async createHotel(@Body() data: Partial<Hotel>): Promise<Hotel> {
     console.log("am intrat pe ruta")
     return this.hotelService.createHotel(data);
+  }
+
+  @Get('/:id')
+  async getHotel(@Param('id') id: string): Promise<Hotel> {
+    return this.hotelService.getHotelById(id);
   }
 
 

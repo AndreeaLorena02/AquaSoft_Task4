@@ -29,6 +29,11 @@ export class UsersController {
     return this.userService.getUsers();
   }
 
+
+
+
+  
+
   @UseGuards(JwtAuthGuard)
   @Get('hotels/all')
   async getHotels(): Promise<Hotel[]> {
