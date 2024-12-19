@@ -4,8 +4,8 @@ import "./ProfilePage.css";
 
 const UserProfile = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user")); // Retrieve and parse user data from localStorage
-    console.log("user: " , user)
+  const user = JSON.parse(localStorage.getItem("user")); 
+  console.log("user: ", user);
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -14,7 +14,7 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <p>User not logged in</p>; // Handle cases where user data is not available
+    return <p>User not logged in</p>; 
   }
 
   return (
@@ -25,9 +25,14 @@ const UserProfile = () => {
         <p><strong>Permission ID:</strong> {user.permissionId || "N/A"}</p>
         <p><strong>Hotel ID:</strong> {user.hotelId || "N/A"}</p>
         <p><strong>Group ID:</strong> {user.groupId || "N/A"}</p>
-        <button className="btn-logout" onClick={handleLogout}>
-          Logout
-        </button>
+        <div className="button-container">
+          <button className="btn-back" onClick={() => navigate(-1)}> {/* Back Button */}
+            Back
+          </button>
+          <button className="btn-logout" onClick={handleLogout}> {/* Logout Button */}
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

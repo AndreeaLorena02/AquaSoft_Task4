@@ -6,7 +6,7 @@ import "./Login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Pentru afișarea mesajelor de eroare
+  const [error, setError] = useState(""); 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -24,6 +24,12 @@ export default function Login() {
         navigate("/adminPage");
       }else if(response.data.user.permissionId === '676173e713e3328961b2ed9e'){
         navigate("/userMainPage");
+      }
+      else if(response.data.user.permissionId === '676173a613e3328961b2ed9d'){
+        navigate("/hotelManagerPage");
+      }
+      else if(response.data.user.permissionId === '676174e313e3328961b2eda0'){
+        navigate("/groupManagersPage");
       }
     } catch (err) {
       console.error(err);

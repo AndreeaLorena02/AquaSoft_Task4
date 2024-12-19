@@ -8,6 +8,9 @@ import UserProfile from "./components/UserProfile";
 import AdminPage from "./components/AdminPage";
 import "./App.css";
 import HotelOffers from "./components/HotelOffers";
+import HotelManager from "./components/HotelManagerPage";
+import HotelUsers from "./components/HotelUsersPage";
+import GroupManagersPage from "./components/GroupManagersPage";
 
 function App() {
   return (
@@ -20,8 +23,9 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/adminPage" element={<AdminPage />} />
         <Route path="/hotels/:hotelId/offers" element={<HotelOffers />} />
-
-
+        <Route path="/hotelManagerPage" element={<HotelManager />} />
+        <Route path="/hotelUsersPage" element={<HotelUsers />} />
+        <Route path="/groupManagersPage" element={<GroupManagersPage />} />
 
       </Routes>
     </Router>
