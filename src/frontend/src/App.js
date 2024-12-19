@@ -15,6 +15,7 @@ import AddOfferToHotel from "./components/AddOfferToHotel";
 import HotelManager from "./components/HotelManagerPage";
 import HotelUsers from "./components/HotelUsersPage";
 import GroupManagersPage from "./components/GroupManagersPage";
+import HotelPage from "./components/HotelPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/hotelManagerPage" element={<HotelManager />} />
         <Route path="/hotelUsersPage" element={<HotelUsers />} />
         <Route path="/groupManagersPage" element={<GroupManagersPage />} />
+        <Route path="/hotelPage" element={<HotelPage />} />
 
       </Routes>
     </Router>

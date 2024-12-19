@@ -35,6 +35,11 @@ export class UsersController {
     return this.hotelService.getAllHotels();
   }
 
+  @Get('/hotels/magic-link')
+  async magic(): Promise<Hotel[]> {
+    return this.hotelService.getAllHotels();
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id') // Endpoint to get user by ID
   async getUserById(@Param('id') id: string) {

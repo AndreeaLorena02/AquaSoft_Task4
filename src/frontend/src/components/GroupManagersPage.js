@@ -102,6 +102,9 @@ const GroupManagersPage = () => {
             <a href="/groupManagersPage">Group Managers</a>
           </li>
           <li>
+            <a href="/hotelPage">View Hotels</a>
+          </li>
+          <li>
             <a href="/userProfile">Profile</a>
           </li>
         </ul>

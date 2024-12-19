@@ -1,0 +1,107 @@
+/* HomePage.css */
+
+/* General Page Styling */
+.user-page {
+    background-image: url('../../public/hotelPage.jpg');
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  /* Main Content Section */
+  .main-content {
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Section Title */
+  #hotels h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Error and Success Messages */
+  .error-message {
+    color: #d9534f; /* Red for errors */
+    background: #f9e2e1;
+    border: 1px solid #d9534f;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: #5cb85c; /* Green for success */
+    background: #e2f4e1;
+    border: 1px solid #5cb85c;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  /* Hotels List Styling */
+  .hotels-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .hotel-item {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .hotel-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+  }
+  
+  /* Hotel Name Styling */
+  .hotel-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    flex: 1;
+  }
+  
+  /* View Button Styling */
+  .view-button {
+    background-color: #007bff; /* Bootstrap Blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .view-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .view-button:active {
+    background-color: #004085;
+  }
+  

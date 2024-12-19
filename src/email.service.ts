@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* email.service.ts */
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 
@@ -11,13 +9,13 @@ export class EmailService {
     this.transporter = nodemailer.createTransport({
       host: 'sandbox.smtp.mailtrap.io',
       port: 587,
-      secure: false, // true pentru port 465, false pentru port 587
+      secure: false,
       auth: {
-        user: 'd2b534ae32d1fd', // Înlocuiește cu userul tău Mailtrap
-        pass: 'f814659d1a33ca', // Înlocuiește cu parola ta Mailtrap
+        user: 'd2b534ae32d1fd',
+        pass: 'f814659d1a33ca',
       },
-        debug: true, // Activează debugging
-        logger: true, // Activează logarea completă
+      debug: true,
+      logger: true,
     });
   }
 
