@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./UpdateOffer.css";
-import { useNavigate } from "react-router-dom"; // Importăm useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 
 
 const UpdateOffer = () => {
-  const { offerId } = useParams(); // Preia offerId din URL
+  const { offerId } = useParams(); 
   const [offer, setOffer] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Folosim navigate pentru redirecționare
+  const navigate = useNavigate(); 
 
 
   console.log("oferta: " , offerId)
@@ -24,7 +24,7 @@ const UpdateOffer = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setOffer(response.data); // Setează detaliile ofertei
+      setOffer(response.data); 
       setLoading(false);
     } catch (err) {
       setError("Nu s-au putut încărca detaliile ofertei.");
@@ -41,7 +41,7 @@ const UpdateOffer = () => {
       const token = localStorage.getItem("access_token");
       await axios.put(
         `http://localhost:3000/offers/update/${offerId}`,
-        { name: offer.name, price: offer.price }, // Trimite datele actualizate
+        { name: offer.name, price: offer.price }, 
         {
           headers: {
             Authorization: `Bearer ${token}`,

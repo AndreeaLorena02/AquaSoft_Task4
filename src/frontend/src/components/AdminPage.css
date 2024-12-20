@@ -1,6 +1,4 @@
-/* AdminPage.css */
 
-/* General styling */
 .user-page {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -40,9 +38,9 @@
     font-weight: bold;
   }
   
-  .navbar-links a:hover {
+  /* .navbar-links a:hover {
     text-decoration: underline;
-  }
+  } */
   
   .main-content {
     max-width: 800px;

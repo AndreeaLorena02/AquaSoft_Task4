@@ -36,7 +36,7 @@ const UserPage = () => {
     const token = localStorage.getItem("access_token");
     const user = JSON.parse(localStorage.getItem("user"));
     
-    console.log(user);// Retrieve and parse user data from localStorage
+    console.log(user);
 
     if (!token) {
       setError("You need to be logged in to book a hotel.");
@@ -47,7 +47,7 @@ const UserPage = () => {
     try {
       const response = await axios.put(
         `http://localhost:3000/users/book-hotel`,
-        { hotelId, user: user}, // Trimite hotelId și userId,
+        { hotelId, user: user}, 
         {
           headers: {
             Authorization: `Bearer ${token}`,

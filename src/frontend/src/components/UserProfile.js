@@ -26,10 +26,10 @@ const UserProfile = () => {
         <p><strong>Hotel ID:</strong> {user.hotelId || "N/A"}</p>
         <p><strong>Group ID:</strong> {user.groupId || "N/A"}</p>
         <div className="button-container">
-          <button className="btn-back" onClick={() => navigate(-1)}> {/* Back Button */}
+          <button className="btn-back" onClick={() => navigate(-1)}> 
             Back
           </button>
-          <button className="btn-logout" onClick={handleLogout}> {/* Logout Button */}
+          <button className="btn-logout" onClick={handleLogout}> 
             Logout
           </button>
         </div>

@@ -5,7 +5,7 @@ import "./HotelOffers.css";
 
 
 const HotelOffers = () => {
-  const { hotelId } = useParams(); // Extract hotelId from the URL
+  const { hotelId } = useParams(); 
   const [offers, setOffers] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const HotelOffers = () => {
         },
       });
       alert("Oferta a fost eliminată cu succes!");
-      getOffers(); // Actualizează lista după ștergere
+      getOffers(); 
     } catch (error) {
       setError("Nu s-a putut elimina oferta.");
     }

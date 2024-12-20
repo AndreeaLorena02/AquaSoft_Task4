@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./AddOfferToHotel.css";
 
 const AddOfferToHotelPage = () => {
-  const { hotelId } = useParams(); // Preia hotelId din URL
+  const { hotelId } = useParams(); 
   const [availableOffers, setAvailableOffers] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const AddOfferToHotelPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAvailableOffers(response.data); // Setează ofertele disponibile
+      setAvailableOffers(response.data); 
     } catch (error) {
       setError("Nu s-au putut încărca ofertele disponibile.");
     }
@@ -37,7 +37,7 @@ const AddOfferToHotelPage = () => {
         }
       );
       alert("Oferta a fost adăugată cu succes!");
-      getAvailableOffers(); // Actualizează lista după adăugare
+      getAvailableOffers(); 
     } catch (error) {
       setError("Nu s-a putut adăuga oferta.");
     }
@@ -49,14 +49,14 @@ const AddOfferToHotelPage = () => {
 
   return (
     <div className="add-offer-to-hotel-page">
-      <h1>Adaugă Oferte la Hotel</h1>
+      <h1>Add Offer to Hotel</h1>
       {error && <p className="error-message">{error}</p>}
       {availableOffers.length > 0 ? (
         <ul className="offers-list">
           {availableOffers.map((offer) => (
             <li key={offer._id}>
               <h3>{offer.name}</h3>
-              <p>Preț: {offer.price} RON</p>
+              <p>Price: {offer.price} RON</p>
               <button onClick={() => handleAddOffer(offer._id)}>Adaugă Oferta</button>
             </li>
             
@@ -64,7 +64,7 @@ const AddOfferToHotelPage = () => {
         </ul>
         
       ) : (
-        <p>Nu există oferte disponibile.</p>
+        <p>No offers available!</p>
       )}
         <button className="back-button" onClick={() => navigate(-1)}>
                     Back

@@ -33,13 +33,11 @@ const AdminPage = () => {
 
   const viewOffers = (hotelId) => {
     console.log(`Viewing offers for hotel ID: ${hotelId}`);
-    // Redirect to offers page
     navigate(`/hotels/${hotelId}/offers`);
   };
 
   const addOffer = (hotelId) => {
     console.log(`Adding offer for hotel ID: ${hotelId}`);
-    // Redirect to add offer page
     navigate(`/offers/addOfferToHotel/${hotelId}`);
   };
 

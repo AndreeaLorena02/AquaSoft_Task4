@@ -6,7 +6,7 @@ import "./HotelPage.css";
 const HotelPage = () => {
   const [searchParams] = useSearchParams();
   const [hotels, setHotels] = useState([]);
-  const [selectedHotel, setSelectedHotel] = useState(null); // Hotel selectat
+  const [selectedHotel, setSelectedHotel] = useState(null); 
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const HotelPage = () => {
 
   const viewHotel = async (groupId, hotelId) => {
     console.log("am apsasat")
-    const user = JSON.parse(localStorage.getItem("user")); // Preia utilizatorul din localStorage
+    const user = JSON.parse(localStorage.getItem("user")); 
     console.log("user: " , user , "groupId: " , groupId , "hotelId: " , hotelId)
 
     if (!user || !user.groupId) {
@@ -46,7 +46,7 @@ const HotelPage = () => {
 
       console.log("response: " , response.data)
 
-      setSelectedHotel(response.data); // Setează hotelul selectat pentru afișare
+      setSelectedHotel(response.data); 
     } catch (err) {
       setError("Failed to fetch hotel details.");
     }

@@ -17,10 +17,10 @@
   .managers-table {
     width: 80%;
     max-width: 1000px;
-    background-color: rgba(255, 255, 255, 0.9); /* Set a background color to make table non-transparent */
+    background-color: rgba(255, 255, 255, 0.9); 
     border-collapse: collapse;
     margin-top: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for a more refined look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     border-radius: 10px;
     overflow: hidden;
   }

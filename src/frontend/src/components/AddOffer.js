@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./AddOffer.css";
 
 const AddOfferPage = () => {
-  const { hotelId } = useParams(); // Preia hotelId din URL
+  const { hotelId } = useParams(); 
   const navigate = useNavigate();
   const [offerData, setOfferData] = useState({
     name: "",
@@ -54,7 +54,7 @@ const AddOfferPage = () => {
 
   return (
     <div className="add-offer-page">
-      <h1>Adaugă Ofertă</h1>
+      <h1>Add Offer</h1>
       {error && <p className="error-message">{error}</p>}
       {success && <p className="success-message">{success}</p>}
 
@@ -72,7 +72,7 @@ const AddOfferPage = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="price">Preț:</label>
+          <label htmlFor="price">Price:</label>
           <input
             type="number"
             id="price"
@@ -84,7 +84,7 @@ const AddOfferPage = () => {
         </div>
 
         <button type="submit" className="submit-button">
-          Adaugă Ofertă
+          Add Offer
         </button>
       </form>
     </div>

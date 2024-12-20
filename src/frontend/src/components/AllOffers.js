@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Importăm useNavigate
-import "./AllOffers.css"; // Importă stilul
+import { useNavigate } from "react-router-dom"; 
+import "./AllOffers.css"; 
 
 const AllOffers = () => {
-  const [offers, setOffers] = useState([]); // Stochează ofertele
-  const [error, setError] = useState(""); // Mesaj de eroare
-  const [loading, setLoading] = useState(true); // Indicator de încărcare
-  const navigate = useNavigate(); // Folosim navigate pentru redirecționare
+  const [offers, setOffers] = useState([]); 
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true); 
+  const navigate = useNavigate(); 
 
   const getAllOffers = async () => {
-    const token = localStorage.getItem("access_token"); // Token-ul JWT
+    const token = localStorage.getItem("access_token"); 
 
     if (!token) {
       setError("Trebuie să te autentifici pentru a vedea ofertele.");
@@ -20,12 +20,12 @@ const AllOffers = () => {
     try {
       const response = await axios.get("http://localhost:3000/offers/all", {
         headers: {
-          Authorization: `Bearer ${token}`, // Trimite token-ul pentru autorizare
+          Authorization: `Bearer ${token}`, 
         },
       });
 
-      setOffers(response.data); // Setează ofertele în state
-      setLoading(false); // Termină încărcarea
+      setOffers(response.data); 
+      setLoading(false); 
     } catch (err) {
       setError("Nu s-au putut încărca ofertele. Încearcă din nou.");
       setLoading(false);
@@ -34,7 +34,7 @@ const AllOffers = () => {
 
   const handleModifyOffer = (offerId) => {
     console.log(`Modifying offer with ID: ${offerId}`);
-    navigate(`/offers/updateOffer/${offerId}`); // Redirecționează către pagina de modificare ofertă
+    navigate(`/offers/updateOffer/${offerId}`); 
   };
 
   const handleDeleteOffer = async (offerId) => {
@@ -51,13 +51,13 @@ const AllOffers = () => {
       window.alert(`Offer ID: ${offerId} deleted successfully!`);
     } catch (err) {
       console.error("Error deleting offer:", err);
-      setError("Nu s-a putut șterge oferta.");
+      setError("Error deleting offer.");
     }
   };
 
   const handleAddOffer = () => {
     console.log("Adding new offer");
-    navigate("/offers/add"); // Redirecționează către pagina de adăugare ofertă
+    navigate("/offers/add"); 
   };
 
   useEffect(() => {
@@ -66,12 +66,12 @@ const AllOffers = () => {
 
   return (
     <div className="all-offers-page">
-      <h1>Toate Ofertele</h1>
+      <h1>All Offers</h1>
       <button className="add-offer-button" onClick={handleAddOffer}>
-        Adaugă Ofertă
+        ADD Offer
       </button>
 
-      {loading && <p>Se încarcă ofertele...</p>}
+      {loading && <p>Loading offers...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {!loading && offers.length > 0 ? (
@@ -79,26 +79,26 @@ const AllOffers = () => {
           {offers.map((offer) => (
             <li key={offer._id} className="offer-item">
               <h3>Name: {offer.name}</h3>
-              <p><strong>Preț:</strong> {offer.price} RON</p>
+              <p><strong>Price:</strong> {offer.price} RON</p>
               <div className="button-group">
                 <button
                   className="modify-button"
                   onClick={() => handleModifyOffer(offer._id)}
                 >
-                  Modifică
+                  Modify
                 </button>
                 <button
                   className="delete-button"
                   onClick={() => handleDeleteOffer(offer._id)}
                 >
-                  Șterge
+                  Delete
                 </button>
               </div>
             </li>
           ))}
         </ul>
       ) : (
-        !loading && <p>Nu există oferte disponibile.</p>
+        !loading && <p>No offers available!</p>
       )}
 
         <button className="back-button" onClick={() => navigate(-1)}>
